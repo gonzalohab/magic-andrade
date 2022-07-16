@@ -1,5 +1,5 @@
 import Search from "../Search/Search";
-import Cart from "../Cart/Cart";
+import CartWidget from "../CartWidget/CartWidget";
 
 const Top = () => {
 
@@ -15,7 +15,7 @@ const Top = () => {
 
                     <Search />
 
-                    <Cart />
+                    <CartWidget />
                 </div>
             </div>
         </section>

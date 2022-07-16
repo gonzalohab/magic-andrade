@@ -1,9 +1,9 @@
 import React from 'react';
 
-export const NavBar = ({ titulo }) => {
+export const NavBar = ({title}) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#"> {titulo} </a>
+      <a className="navbar-brand" href="#"> {title} </a>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
