@@ -1,14 +1,18 @@
 import Item from "../Item/Item";
+import ItemList from "../ItemList/ItemList";
 
 const ItemListContainer = ({title}) => {
 
     return(
-        <div>
+        <div className="container">
+            
             { title }
 
+            <ItemList />
 
+            {/* 
             <Item />
-
+            */}
 
         </div>
     )
