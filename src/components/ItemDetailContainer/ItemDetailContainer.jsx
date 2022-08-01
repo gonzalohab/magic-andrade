@@ -1,8 +1,12 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import ItemDetail from "../ItemDetail/ItemDetail";
+
 const ItemDetailContainer = () => {
 
-    const [items, setItems] = useState([]);
+    const { itemId } = useParams();
+
+    const [item, setItem] = useState();
 
     const getItem = new Promise((resolve, reject) => {
 
@@ -12,35 +16,38 @@ const ItemDetailContainer = () => {
             description: `Descripción del producto de prueba para el desafío consumiento API's`,
             price: 12500,
             pictureUrl: 'http://wwww.google.cl',
-            stock: Math.floor(Math.random() * 100),   
+            stock: Math.floor(Math.random() * 100),
         };
 
         setTimeout(resolve, 2000, prd);
 
     });
-    
-    useEffect( () => {
+
+    useEffect(() => {
         getItem
-            .then( data => {
-                setItems([...items, data]);
+            .then(data => {
+                setItem(data);
             })
             .catch(err => console.log(err));
-        console.log(`UseEffect`);
-    }, []);
+    }, [itemId]);
 
-    return(
+    return (
 
-        
-        <div className="row">
-            
-            <h1>ItemDetailContainer</h1>
+        <div className="container">
 
-            {
-                items.length === 0 
-                && 'Loading' 
-                ||  items.map( item => <ItemDetail key={item.id} item={item} /> )
-                    
-            }
+            <div className="row">
+
+                <h1>ItemDetailContainer {itemId} </h1>
+
+                {
+                    item === undefined
+                    && 'Loading' 
+                    ||  <ItemDetail item={item}/>
+                }
+
+               
+            </div>
+
         </div>
 
     )

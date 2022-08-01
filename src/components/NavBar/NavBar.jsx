@@ -1,9 +1,11 @@
+import { Link, NavLink } from 'react-router-dom';
 import React from 'react';
 
 const NavBar = ({title}) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="#"> {title} </a>
+      {/* <a className="navbar-brand" href="#"> {title} </a> */}
+      <NavLink className="navbar-brand" to={'/'}> {title}</NavLink>
       <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span className="navbar-toggler-icon"></span>
       </button>
@@ -15,13 +17,16 @@ const NavBar = ({title}) => {
           </li>
         */}
           <li className="nav-item">
-            <a className="nav-link" href="#">Singles</a>
+            {/*  <a className="nav-link" href="#">Singles</a> */}
+            <NavLink to={'/category/singles'} className="nav-link">Singles</NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Mazos</a>
+            {/* <a className="nav-link" href="#">Mazos</a> */}
+            <NavLink to={'/category/mazos'} className="nav-link">Mazos</NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Accesorios</a>
+            {/* <a className="nav-link" href="#">Accesorios</a> */}
+            <NavLink to={'/category/accesorios'} className="nav-link">Accesorios</NavLink>
           </li>
           {/* 
           <li className="nav-item">

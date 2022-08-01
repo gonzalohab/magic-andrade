@@ -1,4 +1,9 @@
+import { useState } from "react";
+import ItemCount from "../ItemCount/ItemCount";
+
 const ItemDetail = ({ item }) => {
+
+    const [ staticStock, setStaticStock ] = useState(item.stock);
 
     // Put in env variables
     const formatter = new Intl.NumberFormat('en-US', {
@@ -17,8 +22,9 @@ const ItemDetail = ({ item }) => {
                     <div className="card-body">
                         <h5 className="card-title"> {item.title} </h5>
                         <span> { formatter.format(item.price) }  {/* $2,500.00 */} </span>
-                        <h6 style={{color: "gray"}}> stock: {item.stock}</h6>
+                        <h6 style={{color: "gray"}}> stock: {staticStock}</h6>
                         <p className="card-text">{item.description}</p>
+                        <ItemCount stock={staticStock} initial={1} setStaticStock={setStaticStock}/>
                     </div>
             </div>
 
