@@ -15,8 +15,11 @@ const ItemDetailContainer = () => {
             title: `Producto desafío Consumiendo API's`,
             description: `Descripción del producto de prueba para el desafío consumiento API's`,
             price: 12500,
-            pictureUrl: 'http://wwww.google.cl',
+            pictureUrl1: 'https://i.imgur.com/Dhebu4F.jpg',
+            pictureUrl2: 'https://i.imgur.com/Rx7uKd0.jpg',
+            pictureUrl3: 'http://wwww.google.cl',
             stock: Math.floor(Math.random() * 100),
+            brand: 'Coderhouse',
         };
 
         setTimeout(resolve, 2000, prd);
