@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Item from '../Item/Item';
+import Loader from '../Loader/Loader';
 
 const ItemList = ({category}) => {
 
@@ -29,6 +30,7 @@ const ItemList = ({category}) => {
     
     
       useEffect(() => {
+        setProducts([]);
         getProducts.then( data => {
           const newData = data.filter(prd => prd.categoryId === (category === undefined ? prd.categoryId : category));
           setProducts(newData);
@@ -41,7 +43,7 @@ const ItemList = ({category}) => {
             <h1>{category}</h1>
             {
                 products.length === 0 
-                && 'Loading' 
+                && <Loader/>
                 ||  products.map( prd => <Item key={prd.id} product={prd} /> )
                     
             }
