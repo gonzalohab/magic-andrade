@@ -32,7 +32,13 @@ const ItemDetail = ({ item }) => {
                         </div>
                     </div>
                     <p className="about">{item.description}</p>
-                    <div className="cart mt-4 align-items-center"> <ItemCount stock={staticStock} initial={1} setStaticStock={setStaticStock} /> <i className="fa fa-heart text-muted"></i> <i class="fa fa-share-alt text-muted"></i> </div>
+                    <div className="cart mt-4 align-items-center"> 
+                        {
+                            staticStock !== 0 && <ItemCount stock={staticStock} initial={1} setStaticStock={setStaticStock} />  
+                        }
+                        <i className="fa fa-heart text-muted"></i> 
+                        <i className="fa fa-share-alt text-muted"></i> 
+                    </div>
                 </div>
             </div>
         </>
