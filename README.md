@@ -10,7 +10,7 @@ npm install
 ````
 ## Scripts
 ````
-npm run dev
+npm run
 ````
 
 
