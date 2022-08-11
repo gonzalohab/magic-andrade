@@ -20,13 +20,13 @@ const ItemDetail = ({ item }) => {
             <div className="col-md-6">
                 <div className="images p-3">
                     <div className="text-center p-4"> <img id="main-image" src={item.pictureUrl1} width="250" /> </div>
-                    <div className="thumbnail text-center"> <img onclick="change_image(this)" src={item.pictureUrl2} width="70" /> <img onclick="change_image(this)" src={item.pictureUrl1} width="70" /> </div>
+                    <div className="thumbnail text-center"> <img src={item.pictureUrl2} width="70" /> <img src={item.pictureUrl1} width="70" /> </div>
                 </div>
             </div>
             <div className="col-md-6">
                 <div className="product p-4">
                     <div className="mt-4 mb-3"> <span className="text-uppercase text-muted brand"> {item.brand} </span>
-                        <h5 className="text-uppercase">{item.title}</h5>
+                        <h5 className="text-uppercase">{item.title} {formatter.format(item.price)}</h5>
                         <div className="price d-flex flex-row align-items-center">
                             <div className="ml-2"> <small className="dis-price"> stock: {staticStock}</small> </div>
                         </div>
@@ -34,7 +34,7 @@ const ItemDetail = ({ item }) => {
                     <p className="about">{item.description}</p>
                     <div className="cart mt-4 align-items-center"> 
                         {
-                            staticStock !== 0 && <ItemCount stock={staticStock} initial={1} setStaticStock={setStaticStock} />  
+                            staticStock !== 0 && <ItemCount stock={staticStock} initial={1} setStaticStock={setStaticStock} item={item}/>  
                         }
                         <i className="fa fa-heart text-muted"></i> 
                         <i className="fa fa-share-alt text-muted"></i> 

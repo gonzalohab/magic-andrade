@@ -6,38 +6,43 @@ import NavBar from './components/NavBar/NavBar'
 import Top from './components/Top/Top';
 import TestEventos from './components/TestEventos/TestEventos';
 import Cart from './components/Cart/Cart';
+import CartContext from './components/CartContext/CartContext';
 
 function App() {
 
   const title = 'MagicApp';
 
   return (
+
     <div className="App">
 
-      <BrowserRouter>
-        <Top />
+      <CartContext>
 
-        <NavBar title={title} />
+        <BrowserRouter>
 
-        <Routes>
+          <Top />
 
-          <Route exact path='/' element={<ItemListContainer title={title} /> }/>
+          <NavBar title={title} />
 
-          <Route exact path='/category/:categoryId' element={<ItemListContainer />} />
+          <Routes>
 
-          <Route exact path='/item/:itemId' element={<ItemDetailContainer />} />
+            <Route exact path='/' element={<ItemListContainer title={title} />} />
 
-          <Route exact path='/cart' element={<Cart />} />
+            <Route exact path='/category/:categoryId' element={<ItemListContainer />} />
 
-          <Route path="/testeventos" element={<TestEventos />} /> 
+            <Route exact path='/item/:itemId' element={<ItemDetailContainer />} />
 
-          <Route path="*" element={<p>404 Not Found</p>} /> 
+            <Route exact path='/cart' element={<Cart />} />
 
-        </Routes>
+            <Route path="/testeventos" element={<TestEventos />} />
 
-        
+            <Route path="*" element={<p>404 Not Found</p>} />
 
-      </BrowserRouter>
+          </Routes>
+
+        </BrowserRouter>
+
+      </CartContext>
 
     </div>
   )

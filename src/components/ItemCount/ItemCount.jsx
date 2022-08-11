@@ -1,9 +1,12 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { cartContext } from "../CartContext/CartContext";
 
-const ItemCount = ({stock, initial, setStaticStock}) => {
+const ItemCount = ({stock, initial, setStaticStock, item}) => {
 
     const [count, setCount] = useState(initial);
+
+    const { addItem } = useContext(cartContext);
 
     const minusCount = () => {
         setCount(count > 0 ? count-1 : count);
@@ -17,6 +20,7 @@ const ItemCount = ({stock, initial, setStaticStock}) => {
         if (count <= stock) {
             setStaticStock(stock-count);
             setCount(initial);
+            addItem(item, count);
         } else {
             alert("upss no hay stock!!");
             setCount(0);

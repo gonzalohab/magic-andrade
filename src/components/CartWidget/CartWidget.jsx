@@ -1,4 +1,19 @@
+import { useContext, useEffect } from "react";
+import { cartContext } from "../CartContext/CartContext";
+
 const CartWidget = () => {
+
+    const { cart } = useContext(cartContext);
+
+    // Put in env variables
+    const formatter = new Intl.NumberFormat('en-US', {
+        style: 'currency',
+        currency: 'USD',
+
+        // These options are needed to round to whole numbers if that's what you want.
+        //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+        //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+    });
 
     return (
 
@@ -13,8 +28,8 @@ const CartWidget = () => {
                 </span>
                 
                 <div className="d-flex flex-column ms-2">
-                    <span className="qty">1 Product</span>
-                    <span className="fw-bold">$27.90</span>
+                    <span className="qty"> { cart.reduce((partialSum, a) => partialSum + a.quantity, 0) } Product</span>
+                    <span className="fw-bold"> { formatter.format(cart.reduce((partialSum, a) => partialSum + (a.price * a.quantity) , 0)) }</span>
                 </div>
             </div>
         </div>
