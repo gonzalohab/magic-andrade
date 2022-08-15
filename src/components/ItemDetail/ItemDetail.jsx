@@ -1,9 +1,12 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail = ({ item }) => {
 
     const [staticStock, setStaticStock] = useState(item.stock);
+
+    const [itemCount, setItemCount] = useState(true);
 
     // Put in env variables
     const formatter = new Intl.NumberFormat('en-US', {
@@ -34,7 +37,17 @@ const ItemDetail = ({ item }) => {
                     <p className="about">{item.description}</p>
                     <div className="cart mt-4 align-items-center"> 
                         {
-                            staticStock !== 0 && <ItemCount stock={staticStock} initial={1} setStaticStock={setStaticStock} item={item}/>  
+                            itemCount && staticStock !== 0 &&   <ItemCount 
+                                                                    stock={staticStock} 
+                                                                    initial={1} 
+                                                                    setStaticStock={setStaticStock} 
+                                                                    item={item} 
+                                                                    setItemCount={setItemCount} 
+                                                                />  
+                        }
+
+                        {
+                            !itemCount && <Link to='/cart'><button className="btn btn-primary" style={{ marginLeft: '5px'}} >Go to Cart</button> </Link>
                         }
                         <i className="fa fa-heart text-muted"></i> 
                         <i className="fa fa-share-alt text-muted"></i> 

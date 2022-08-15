@@ -15,7 +15,6 @@ const Item = ({ stock = 10, initial = 1, product }) => {
                     <h5 className="card-title"><NavLink to={`/item/${product.id}`} >{product.title}</NavLink></h5>
                     <h6 style={{ color: "gray" }}> stock: {staticStock}</h6>
                     <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <ItemCount stock={staticStock} initial={initial} setStaticStock={setStaticStock} />
                 </div>
             </div>
         </div>
