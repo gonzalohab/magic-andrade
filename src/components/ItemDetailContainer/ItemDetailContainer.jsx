@@ -10,9 +10,11 @@ const ItemDetailContainer = () => {
 
     const getItem = new Promise((resolve, reject) => {
 
+        const rnd = Math.floor(Math.random() * 100000); 
+
         const prd = {
-            id: Math.floor(Math.random() * 100000),
-            title: `Producto desafío Consumiendo API's`,
+            id: rnd,
+            title: `Producto desafío Consumiendo API's ${rnd}`,
             description: `Descripción del producto de prueba para el desafío consumiento API's`,
             price: 12500,
             pictureUrl1: 'https://i.imgur.com/Dhebu4F.jpg',

@@ -19,18 +19,24 @@ export default function CartContext({children}) {
       id: item.id,
       quantity: quantity,
       price: item.price, 
+      title: item.title,
     }
 
     if ( index > -1) {
       currentCart[index].quantity += quantity; 
-      setCart(currentCart);
+      setCart([currentCart]);
     } else {
       setCart([...cart, cartItem]);
     }
     
   }
 
-  return <cartContext.Provider value={{ cart, setCart, addItem }}>{children}</cartContext.Provider>
+  const deleteItem = (id) => {
+    const currentCart = cart.filter(item => item.id !== id);
+    setCart(currentCart);
+  }
+
+  return <cartContext.Provider value={{ cart, setCart, addItem, deleteItem }}>{children}</cartContext.Provider>
 
 }
 

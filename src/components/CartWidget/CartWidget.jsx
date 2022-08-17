@@ -16,7 +16,6 @@ const CartWidget = () => {
     });
 
     return (
-
         <div className="col-md-2">
             <div className="d-flex d-none d-md-flex flex-row align-items-center">
                 <span className="shop-bag">
@@ -33,6 +32,8 @@ const CartWidget = () => {
                 </div>
             </div>
         </div>
+        
+        
     )
 
 
