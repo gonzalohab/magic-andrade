@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { doc, getDoc, getFirestore} from "firebase/firestore";
 import ItemDetail from "../ItemDetail/ItemDetail";
 
 const ItemDetailContainer = () => {
@@ -8,32 +9,22 @@ const ItemDetailContainer = () => {
 
     const [item, setItem] = useState();
 
-    const getItem = new Promise((resolve, reject) => {
-
-        const rnd = Math.floor(Math.random() * 100000); 
-
-        const prd = {
-            id: rnd,
-            title: `Producto desafío Consumiendo API's ${rnd}`,
-            description: `Descripción del producto de prueba para el desafío consumiento API's`,
-            price: 12500,
-            pictureUrl1: 'https://i.imgur.com/Dhebu4F.jpg',
-            pictureUrl2: 'https://i.imgur.com/Rx7uKd0.jpg',
-            pictureUrl3: 'http://wwww.google.cl',
-            stock: Math.floor(Math.random() * 100),
-            brand: 'Coderhouse',
-        };
-
-        setTimeout(resolve, 2000, prd);
-
-    });
-
     useEffect(() => {
+        const db = getFirestore();
+
+        const itemRef = doc(db, 'items', itemId);
+        getDoc(itemRef).then( (snapshot) => {
+                            setItem({ id:snapshot.id, ...snapshot.data() })
+                        })
+                        .catch( err => console.log(err));
+
+        /*
         getItem
             .then(data => {
                 setItem(data);
             })
             .catch(err => console.log(err));
+        */
     }, [itemId]);
 
     return (

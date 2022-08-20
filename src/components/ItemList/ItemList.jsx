@@ -1,40 +1,23 @@
 import { useEffect, useState } from 'react';
 import Item from '../Item/Item';
 import Loader from '../Loader/Loader';
+import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 
 const ItemList = ({category}) => {
 
     const [products, setProducts] = new useState([]);
-
-    const getProducts = new Promise((resolve, reject) => {
-    
-        const prd = new Array();
-
-        const categories = ['singles', 'mazos', 'accesorios'];
         
-        for(let i = 1; i < 6; i++) {
-            prd.push({
-                id: i,
-                title: `Product ${i}`,
-                description: `Description of prouct ${i}`,
-                price: 1000 * i,
-                pictureUrl: 'http://wwww.google.cl',
-                stock: Math.floor(Math.random() * 100),
-                categoryId: categories[Math.floor(Math.random() * categories.length)],   
-            });
-        }
-
-        setTimeout(resolve, 2000, prd);
-        
-      });
-    
-    
       useEffect(() => {
         setProducts([]);
-        getProducts.then( data => {
-          const newData = data.filter(prd => prd.categoryId === (category === undefined ? prd.categoryId : category));
-          setProducts(newData);
-      });
+
+        const db = getFirestore();
+        const itemsCollection = category === undefined ? collection(db, 'items') : query( collection(db, 'items'), where('categoryId', '==', category) );
+        getDocs(itemsCollection).then( (snapshot) => {
+                                    setProducts(snapshot.docs.map( (doc) => ({ id: doc.id, ...doc.data() })))
+                                })
+                                .catch( err => console.log(err));
+        console.log(products, category);                        
+
       }, [category]);
 
 
@@ -44,7 +27,7 @@ const ItemList = ({category}) => {
             {
                 products.length === 0 
                 && <Loader/>
-                ||  products.map( prd => <Item key={prd.id} product={prd} /> )
+                ||  products.map( prd => <Item key={prd.id} id={prd.id} product={prd} /> )
                     
             }
         </div>
