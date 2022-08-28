@@ -15,8 +15,7 @@ const ItemList = ({category}) => {
         getDocs(itemsCollection).then( (snapshot) => {
                                     setProducts(snapshot.docs.map( (doc) => ({ id: doc.id, ...doc.data() })))
                                 })
-                                .catch( err => console.log(err));
-        console.log(products, category);                        
+                                .catch( err => console.log(err));                     
 
       }, [category]);
 
