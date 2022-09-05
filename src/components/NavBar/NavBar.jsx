@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
 import React from 'react';
 
-const NavBar = ({title}) => {
+const NavBar = ({ title }) => {
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
       <NavLink className="navbar-brand" to={'/'}> {title}</NavLink>
@@ -19,10 +19,10 @@ const NavBar = ({title}) => {
           <li className="nav-item">
             <NavLink to={'/category/accesorios'} className="nav-link">Accesorios</NavLink>
           </li>
-            <li className="nav-item">
-              <a className="btn btn-link" href="#"><i className="bx bxs-cart icon-single"></i> <span className="badge badge-danger">3</span></a>
-            </li>
-          </ul>
+          <li className="nav-item">
+            <a className="btn btn-link" href="#"><i className="bx bxs-cart icon-single"></i> <span className="badge badge-danger">3</span></a>
+          </li>
+        </ul>
       </div>
     </nav>
   )

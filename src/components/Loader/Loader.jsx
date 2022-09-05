@@ -2,7 +2,7 @@ import './loader.css';
 
 const Loader = () => {
 
-    return(
+    return (
         <div className="loader">
         </div>
     )

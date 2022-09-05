@@ -1,4 +1,4 @@
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { addDoc, collection, getFirestore, updateDoc, doc, getDoc} from "firebase/firestore";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useContext } from "react";
@@ -9,21 +9,17 @@ const Cart = () => {
 
     const { cart, clearCart } = useContext(cartContext);
 
-    const [ buyer, setBuyer ] = useState({
+    const [buyer, setBuyer] = useState({
         name: "",
         email: "",
         phone: ""
     });
 
-    const [ orderId, setOrderId ] = useState();
+    const [orderId, setOrderId] = useState();
 
     const formatter = new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency: 'USD',
-
-        // These options are needed to round to whole numbers if that's what you want.
-        //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-        //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
     });
 
     let totalCart = cart.reduce((previousItem, currentItem) => previousItem + (currentItem.quantity * currentItem.price), 0);
@@ -33,28 +29,45 @@ const Cart = () => {
         marginTop: "10px"
     }
 
-    const handlerForm = (event) => { 
+    const handlerForm = (event) => {
         setBuyer(
-            {...buyer, [event.target.name] : event.target.value }
+            { ...buyer, [event.target.name]: event.target.value }
         )
     }
 
-    const sendOrder = (event) => {
+    const sendOrder = async (event) => {
+
         event.preventDefault();
-        
+
         const order = {
             buyer,
             items: cart,
             date: new Date().toLocaleString(),
             total: totalCart
         }
-        
+
         const db = getFirestore();
 
         const ordersCollection = collection(db, 'orders');
 
-        addDoc(ordersCollection, order).then( ({id}) => setOrderId(id) )
-                                       .catch( (err) => console.log(err) );
+        addDoc(ordersCollection, order).then(({ id }) => setOrderId(id))
+            .catch((err) => console.log(err));
+
+        let itemRef;
+        let stock;
+
+        cart.map(({ id: itemId, quantity }) => {
+            
+            itemRef = doc(db, 'items', itemId);
+
+            getDoc(itemRef).then( (snapshot) => {
+                stock = snapshot.data().stock;
+                updateDoc(itemRef, { stock: (stock - quantity) });
+            })
+            .catch( err => console.log(err));
+
+
+        });
 
         clearCart();
 
@@ -86,10 +99,10 @@ const Cart = () => {
 
                     <div className="row" style={marginTop10}>
                         <h1> Check-Out! </h1>
-                        
+
                         <form>
                             <div style={marginTop10}>
-                                <input type="text" placeholder="Name, example: Gonzalo Andrade" name="name" onChange={handlerForm}/>
+                                <input type="text" placeholder="Name, example: Gonzalo Andrade" name="name" onChange={handlerForm} />
                             </div>
 
                             <div style={marginTop10}>

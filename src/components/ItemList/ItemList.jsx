@@ -3,34 +3,33 @@ import Item from '../Item/Item';
 import Loader from '../Loader/Loader';
 import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
 
-const ItemList = ({category}) => {
+const ItemList = ({ category }) => {
 
-    const [products, setProducts] = new useState([]);
-        
-      useEffect(() => {
-        setProducts([]);
+  const [products, setProducts] = new useState([]);
 
-        const db = getFirestore();
-        const itemsCollection = category === undefined ? collection(db, 'items') : query( collection(db, 'items'), where('categoryId', '==', category) );
-        getDocs(itemsCollection).then( (snapshot) => {
-                                    setProducts(snapshot.docs.map( (doc) => ({ id: doc.id, ...doc.data() })))
-                                })
-                                .catch( err => console.log(err));                     
+  useEffect(() => {
+    setProducts([]);
 
-      }, [category]);
+    const db = getFirestore();
+    const itemsCollection = category === undefined ? collection(db, 'items') : query(collection(db, 'items'), where('categoryId', '==', category));
+    getDocs(itemsCollection).then((snapshot) => {
+      setProducts(snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() })))
+    })
+      .catch(err => console.log(err));
 
+  }, [category]);
 
-      return(
-        <div className="row">
-            <h1>{category}</h1>
-            {
-                products.length === 0 
-                && <Loader/>
-                ||  products.map( prd => <Item key={prd.id} id={prd.id} product={prd} /> )
-                    
-            }
-        </div>
-      )
+  return (
+    <div className="row">
+      <h1>{category}</h1>
+      {
+        products.length === 0
+        && <Loader />
+        || products.map(prd => <Item key={prd.id} id={prd.id} product={prd} />)
+
+      }
+    </div>
+  )
 
 }
 

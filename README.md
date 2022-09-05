@@ -20,15 +20,13 @@ Project made with Vite
     <li>Change React.StrictMode for React.Fragment</li>
 </ul>
 
-## Cart
+## Entrega Final
 <ul>
-    <li>Cart.js (/Cart/Cart.jsx). <b>ok</b></li>
-    <li>Debe mostrar el desglose de tu carrito y el precio total. <b>ok</b></li>
-    <li>Debe estar agregada la ruta cart al BrowserRouter. <b>ok</b></li>
-    <li>Por cada item, incluye un control para eliminar items. <b>ok</b> </li>
-    <li>De no haber ítems muestra un mensaje, de manera condicional, diciendo que no hay ítems y un react-router Link o un botón para que pueda volver al Landing (ItemDetailContainer.js) para buscar y comprar algo. <b>ok</b></li>
-    <li>CartWidget.js (/CartWidget/CartWidget.jsx). <b>ok</b></li>
-    <li>Ahora debe consumir el CartContext y mostrar en tiempo real (aparte del ícono) qué cantidad de ítems están agregados (2 camisas y 1 gorro equivaldrían a 3 items). <b>ok</b></li>
-    <li>El cart widget no se debe mostrar más si no hay items en el carrito, aplicando la técnica que elijas (dismount, style,etc). <b>ok</b></li>
-    <li>Cuando el estado interno de ItemDetail tenga la cantidad de ítems solicitados mostrar en su lugar un botón que diga “Terminar mi compra”.</li>
+    <li>Borrar todos los console logs y comentarios que no aportan. <b>Done</b></li>
+    <li>Formatear el código. <b>Done</b></li>
+    <li>Stock. <b>Done</b></li>
+    <li>Formulario termino de compra. <b>Done</b></li>
+    <li>Sacar los alerts nativos. <b>Se deja uno</b></li>
+    <li>Persistencia de datos, sessionStorage así tras cerrar el navegador se borra.</li>
+    <li>Url publicación, github pages:  </li>
 </ul>

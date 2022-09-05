@@ -19,7 +19,7 @@ const Top = () => {
                     <Search />
 
                     {
-                        cart.length != 0 &&  <CartWidget />
+                        cart.length != 0 && <CartWidget />
                     }
                 </div>
             </div>
