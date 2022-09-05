@@ -27,6 +27,6 @@ Project made with Vite
     <li>Stock. <b>Done</b></li>
     <li>Formulario termino de compra. <b>Done</b></li>
     <li>Sacar los alerts nativos. <b>Se deja uno</b></li>
-    <li>Persistencia de datos, sessionStorage así tras cerrar el navegador se borra.</li>
-    <li>Url publicación, github pages:  </li>
+    <li>Persistencia de datos, sessionStorage así tras cerrar el navegador se borra. <b>Not Done</b></li>
+    <li>Url publicación, github pages: <b>Not Done</b> </li>
 </ul>
